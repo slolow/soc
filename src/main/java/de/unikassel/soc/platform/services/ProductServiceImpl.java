@@ -12,6 +12,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto getProductById(UUID productId) {
+
+
         return ProductDto.builder().id(UUID.randomUUID())
                 .productName("Ein Produkt")
                 .description("")
