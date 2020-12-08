@@ -9,6 +9,8 @@ public interface CustomerService {
 
     CustomerDto getCustomerById(UUID customerId);
 
+    //CustomerDto[] getAllCustomer();
+
     CustomerDto saveNewCustomer(CustomerDto customerDto);
 
     void updateCustomer(UUID customerId, CustomerDto customerDto);

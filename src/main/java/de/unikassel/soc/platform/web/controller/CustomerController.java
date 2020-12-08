@@ -28,6 +28,12 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 
+/*    @GetMapping
+    public ResponseEntity<CustomerDto[]> getAllCustomer() {
+
+        return new ResponseEntity<CustomerDto>(customerService.getAllCustomerById(), HttpStatus.OK);
+    }*/
+
     @PostMapping
     public ResponseEntity handlePost(@RequestBody @Validated CustomerDto customerDto){
         CustomerDto savedDto = customerService.saveNewCustomer(customerDto);

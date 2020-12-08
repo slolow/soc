@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-import java.util.Optional;
+
 
 @Slf4j
 @Service
@@ -24,15 +24,22 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerMapper = customerMapper;
     }
 
-    // Diese Funktion muss umgeschrieben werden, dass sie nicht
-    // Max Muster zurück gibt sondern den Customer aus der Datenbank mit der
-    // enstprechenden ID
     @Override
     public CustomerDto getCustomerById(UUID customerId) {
         Customer customer = customerRepo.findById(customerId).get();
         CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);
         return customerDto;
     }
+/*
+    @Override
+    public CustomerDto[] getAllCustomer() {
+        Iterable<Customer> allCustomers = customerRepo.findAll();
+
+        CustomerDto[] allCustomerDto = new Array;
+        for (Customer customer: allCustomers) {
+            list.add(customer);
+        }
+    }*/
 
     @Override
     public CustomerDto saveNewCustomer(CustomerDto customerDto) {
