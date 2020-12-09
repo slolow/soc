@@ -65,9 +65,7 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(UUID productId) {
 
         log.debug("Deleting a product...");
-        Product product = productRepo.findById(productId).get();
-        productRepo.delete(product);
-        log.debug("Deleted" + product);
+        productRepo.deleteById(productId);
 
     }
 }

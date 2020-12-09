@@ -27,8 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto getCustomerById(UUID customerId) {
         Customer customer = customerRepo.findById(customerId).get();
-        CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);
-        return customerDto;
+        return customerMapper.customerToCustomerDto(customer);
     }
 /*
     @Override
@@ -58,11 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteById(UUID customerId) {
-
-        log.debug("Deleting.... ");
-        Customer customer = customerRepo.findById(customerId).get();
-        customerRepo.delete(customer);
-        log.debug("Deleted" + customer);
-
+        log.debug("Deleting a customer .... ");
+        customerRepo.deleteById(customerId);
     }
 }
