@@ -1,6 +1,8 @@
 package de.unikassel.soc.platform.services;
 
+import de.unikassel.soc.platform.domain.Product;
 import de.unikassel.soc.platform.domain.Seller;
+import de.unikassel.soc.platform.repositories.ProductRepo;
 import de.unikassel.soc.platform.repositories.SellerRepo;
 import de.unikassel.soc.platform.web.mappers.SellerMapper;
 import de.unikassel.soc.platform.web.model.SellerDto;
@@ -8,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j

@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Product {
+public class Product implements Serializable {
 
     @Id
 /*    @GeneratedValue(generator = "UUID")
