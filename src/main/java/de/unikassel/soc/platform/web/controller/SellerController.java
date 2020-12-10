@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("api/v1/seller")
@@ -24,6 +25,12 @@ public class SellerController {
     public ResponseEntity<SellerDto> getSeller(@PathVariable("sellerId") UUID sellerId) {
 
         return new ResponseEntity<>(sellerService.getSellerById(sellerId), HttpStatus.OK);
+    }
+
+    @GetMapping("/name/{sellerName}")
+    public ResponseEntity<List<SellerDto>> getSellerByName(@PathVariable("sellerName") String name) {
+
+        return new ResponseEntity<>(sellerService.getSellerByName(name), HttpStatus.OK);
     }
 
     @PostMapping

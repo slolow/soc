@@ -8,6 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -29,6 +33,20 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepo.findById(customerId).get();
         return customerMapper.customerToCustomerDto(customer);
     }
+
+    @Override
+    public List<CustomerDto> getCustomerByName(String name) {
+        List<Customer> customerList = customerRepo.findByName(name);
+        List<CustomerDto> customerDtoList = new ArrayList<>();
+        for (int i = 0; i < customerList.size(); i++) {
+            Customer customer = customerList.get(i);
+            CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);
+            customerDtoList.add(customerDto);
+        }
+        return customerDtoList;
+        //List<CustomerDto> customerDtoList = Array.asList(customerDtoArray);
+    }
+
 /*
     @Override
     public CustomerDto[] getAllCustomer() {

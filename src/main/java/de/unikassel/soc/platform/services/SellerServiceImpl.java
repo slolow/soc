@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +31,18 @@ public class SellerServiceImpl implements SellerService {
     public SellerDto getSellerById(UUID sellerId) {
         Seller seller = sellerRepo.findById(sellerId).get();
         return sellerMapper.sellerToSellerDto(seller);
+    }
+
+    @Override
+    public List<SellerDto> getSellerByName(String name) {
+        List<Seller> sellerList = sellerRepo.findByName(name);
+        List<SellerDto> sellerDtoList = new ArrayList<>();
+        for (int i = 0; i < sellerList.size(); i++) {
+            Seller seller = sellerList.get(i);
+            SellerDto sellerDto = sellerMapper.sellerToSellerDto(seller);
+            sellerDtoList.add(sellerDto);
+        }
+        return sellerDtoList;
     }
 
     @Override

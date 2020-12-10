@@ -1,15 +1,19 @@
 package de.unikassel.soc.platform.services;
 
+import de.unikassel.soc.platform.domain.Customer;
 import de.unikassel.soc.platform.domain.Product;
 import de.unikassel.soc.platform.repositories.ProductRepo;
 import de.unikassel.soc.platform.web.mappers.ProductMapper;
+import de.unikassel.soc.platform.web.model.CustomerDto;
 import de.unikassel.soc.platform.web.model.ProductDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -29,6 +33,18 @@ public class ProductServiceImpl implements ProductService {
     public ProductDto getProductById(UUID productId) {
         Product product = productRepo.findById(productId).get();
         return productMapper.productToProductDto(product);
+    }
+
+    @Override
+    public List<ProductDto> getProductByPrice(Double from, Double to) {
+        List<Product> productList = productRepo.findByPriceBetween(from, to);
+        List<ProductDto> productDtoList = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            Product product = productList.get(i);
+            ProductDto productDto = productMapper.productToProductDto(product);
+            productDtoList.add(productDto);
+        }
+        return productDtoList;
     }
 
     @Override

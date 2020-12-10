@@ -1,5 +1,6 @@
 package de.unikassel.soc.platform.web.controller;
 
+import de.unikassel.soc.platform.domain.Product;
 import de.unikassel.soc.platform.services.ProductService;
 import de.unikassel.soc.platform.web.model.ProductDto;
 import org.springframework.http.HttpHeaders;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/api/v1/product")
@@ -24,6 +26,13 @@ public class ProductController {
     public ResponseEntity<ProductDto> getProduct(@PathVariable("productId") UUID productId){
 
         return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.OK);
+    }
+
+    @GetMapping("/price/{from}/{to}")
+    public ResponseEntity<List<ProductDto>> getProductByPrice(@PathVariable("from") Double from,
+                                                              @PathVariable("to") Double to) {
+
+        return new ResponseEntity<>(productService.getProductByPrice(from, to), HttpStatus.OK);
     }
 
     @PostMapping // POST - create new product

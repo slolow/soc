@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("api/v1/customer")
@@ -26,6 +27,12 @@ public class CustomerController {
     public ResponseEntity<CustomerDto> getCustomer(@PathVariable("customerId")  UUID customerId){
 
         return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.OK);
+    }
+
+    @GetMapping("/name/{customerName}")
+    public ResponseEntity<List<CustomerDto>> getCustomerByName(@PathVariable("customerName") String name) {
+
+        return new ResponseEntity<>(customerService.getCustomerByName(name), HttpStatus.OK);
     }
 
 /*    @GetMapping
